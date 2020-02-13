@@ -39,8 +39,13 @@ function addNumbers(num1, num2) {
  *   email: "leia@leia.com",
  * }
 */
-function makePersonObject(/* code here */) {
-  /* code here */
+function makePersonObject(myId, myName, myEmail) {
+  const person = {
+    id: myId,
+    name: myName,
+    email: myEmail,
+  };
+  return person;
 }
 
 /**
@@ -56,8 +61,8 @@ function makePersonObject(/* code here */) {
  * passing { id: 1, name: 'Leia', email: 'leia@leia.com` } as the argument,
  * the returned value should look like `Hello, my name is Leia`.
 */
-function getName(/* code here */) {
-  /* code here */
+function getName(obj) {
+  return `Hello, my name is ${obj.name}`;
 }
 
 /**
@@ -73,15 +78,24 @@ function getName(/* code here */) {
  *         and returns a string like `Hello, my name is {name}`.
  *         where `{name}` is the name passed into `makeSmartPerson`.
 */
-function makeSmartPerson(/* code here */) {
-  /* code here */
+function makeSmartPerson(smartName) {
+  const smartPerson = {
+    name: smartName,
+    sum: function(x,y) {
+      return x + y;
+    },
+    speak: function() {
+      return `Hello, my name is ${this.name}`;
+    },
+  };
+  return smartPerson;
 }
 
 
 
 
 
-/*
+
 // ⭐️ Example Test Data ⭐️
 
 var inventory = [
@@ -98,10 +112,46 @@ var inventory = [
   { id: 11, car_make: "Infiniti", car_model: "G35", car_year: 2004 },
   { id: 12, car_make: "Lotus", car_model: "Esprit", car_year: 2004 },
   { id: 13, car_make: "Chevrolet", car_model: "Cavalier", car_year: 1997 },
-  { id: 14, car_make: "Dodge", car_model: "Ram Van 1500", car_year: 1999 }
-  /// ... Truncated
+  { id: 14, car_make: "Dodge", car_model: "Ram Van 1500", car_year: 1999 },
+  { id: 15, car_make: "Dodge", car_model: "Intrepid", car_year: 2000 },
+  { id: 16, car_make: "Mitsubishi", car_model: "Montero Sport", car_year: 2001 },
+  { id: 17, car_make: "Buick", car_model: "Skylark", car_year: 1987 },
+  { id: 18, car_make: "Geo", car_model: "Prizm", car_year: 1995 },
+  { id: 19, car_make: "Oldsmobile", car_model: "Bravada", car_year: 1994 },
+  { id: 20, car_make: "Mazda", car_model: "Familia", car_year: 1985 },
+  { id: 21, car_make: "Chevrolet", car_model: "Express 1500", car_year: 2003 },
+  { id: 22, car_make: "Jeep", car_model: "Wrangler", car_year: 1997 },
+  { id: 23, car_make: "Eagle", car_model: "Talon", car_year: 1992 },
+  { id: 24, car_make: "Toyota", car_model: "MR2", car_year: 2003 },
+  { id: 25, car_make: "BMW", car_model: "525", car_year: 2005 },
+  { id: 26, car_make: "Cadillac", car_model: "Escalade", car_year: 2005 },
+  { id: 27, car_make: "Infiniti", car_model: "Q", car_year: 2000 },
+  { id: 28, car_make: "Suzuki", car_model: "Aerio", car_year: 2005 },
+  { id: 29, car_make: "Mercury", car_model: "Topaz", car_year: 1993 },
+  { id: 30, car_make: "BMW", car_model: "6 Series", car_year: 2010 },
+  { id: 31, car_make: "Pontiac", car_model: "GTO", car_year: 1964 },
+  { id: 32, car_make: "Dodge", car_model: "Ram Van 3500", car_year: 1999 },
+  { id: 33, car_make: "Jeep", car_model: "Wrangler", car_year: 2011 },
+  { id: 34, car_make: "Ford", car_model: "Escort", car_year: 1991 },
+  { id: 35, car_make: "Chrysler", car_model: "300M", car_year: 2000 },
+  { id: 36, car_make: "Volvo", car_model: "XC70", car_year: 2003 },
+  { id: 37, car_make: "Oldsmobile", car_model: "LSS", car_year: 1997 },
+  { id: 38, car_make: "Toyota", car_model: "Camry", car_year: 1992 },
+  { id: 39, car_make: "Ford", car_model: "Econoline E250", car_year: 1998 },
+  { id: 40, car_make: "Lotus", car_model: "Evora", car_year: 2012 },
+  { id: 41, car_make: "Ford", car_model: "Mustang", car_year: 1965 },
+  { id: 42, car_make: "GMC", car_model: "Yukon", car_year: 1996 },
+  { id: 43, car_make: "Mercedes-Benz", car_model: "R-Class", car_year: 2009 },
+  { id: 44, car_make: "Audi", car_model: "Q7", car_year: 2012 },
+  { id: 45, car_make: "Audi", car_model: "TT", car_year: 2008 },
+  { id: 46, car_make: "Oldsmobile", car_model: "Ciera", car_year: 1995 },
+  { id: 47, car_make: "Volkswagen", car_model: "Jetta", car_year: 2007 },
+  { id: 48, car_make: "Dodge", car_model: "Magnum", car_year: 2008 },
+  { id: 49, car_make: "Chrysler", car_model: "Sebring", car_year: 1996 },
+  { id: 50, car_make: "Lincoln", car_model: "Town Car", car_year: 1999 }
 ]
-*/
+
+
 /**
   * ### Example Array Challenge:
   * 
@@ -136,7 +186,7 @@ function get3rdCar(inventory) {
  * it will return `This is a Lincoln Navigator`.
 */
 function getCarInfoByIndex(inventory, index) {
-  /* code here */
+  return `This is a ${inventory[index].car_make} ${inventory[index].car_model}`;
 }
 
 /**
@@ -150,8 +200,8 @@ function getCarInfoByIndex(inventory, index) {
  * For example, if getLastCarInfo is invoked passing the inventory inside /data/inventory.js,
  * it will return `This is a Lincoln Town Car`.
 */
-function getLastCarInfo(/* code here */) {
-  /* code here */
+function getLastCarInfo(myInventory) {
+  return `This is a ${myInventory[myInventory.length - 1].car_make} ${myInventory[myInventory.length - 1].car_model}`;
 }
 
 /**
@@ -166,8 +216,15 @@ function getLastCarInfo(/* code here */) {
  * For example, if getCarInfoById is invoked with the inventory and the number 1,
  * it will return `This is a Lincoln Navigator`.
 */
-function getCarInfoById(/* code here */) {
-  /* code here */
+function getCarInfoById(carInventory, carId) {
+  let myCar = 0;
+  for (let i = 0; i < carInventory.length; i++) {
+    if (carInventory[i].id === carId) {
+      myCar = i;
+    }
+  }
+
+  return `This is a ${carInventory[myCar].car_make} ${carInventory[myCar].car_model}`
 }
 
 /**
@@ -178,9 +235,16 @@ function getCarInfoById(/* code here */) {
  *     (1) an array which is an inventory of cars like the one inside /data/inventory.js.
  * sortCarInventory returns an inventory that is sorted by car_model, ascending [A-Z].
 */
-function sortCarInventory(/* code here */) {
-  /* code here */
+function sortCarInventory(inv) {
+  let arr = [];
+  for (let i = 0; i < inv.length; i++){
+    arr.push(inv[i].car_model);
+  };
+
+  return arr.sort();
 }
+// console.log(sortCarInventory(inventory));
+// console.log("hello");
 
 /**
  * ### Challenge `getModelYears`
